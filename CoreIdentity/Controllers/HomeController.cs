@@ -20,7 +20,6 @@ namespace CoreIdentity.Controllers
             return View();
         }
 
-        [Authorize(Policy = "AdminFullAccess")]
         public IActionResult Privacy()
         {
             return View();

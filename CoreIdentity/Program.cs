@@ -1,4 +1,3 @@
-using CoreIdentity.Authorization;
 using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,15 +10,7 @@ builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth",
         opt.LoginPath = "/Account/Login";
         });
 
-builder.Services.AddAuthorization(opt =>
-{
-    opt.AddPolicy("AdminFullAccess", policy =>
-        policy.RequireClaim("Engineer")
-              .Requirements.Add(new AdminFullAccessRequirment(3))
-        );
-});
 
-builder.Services.AddSingleton<IAuthorizationHandler, AdminFullAccessRequirmentResultHandeler>();
 
 var app = builder.Build();
 
@@ -38,7 +29,6 @@ app.UseRouting();
 
 app.UseAuthentication();
 
-app.UseAuthorization();
 
 
 app.MapControllerRoute(
