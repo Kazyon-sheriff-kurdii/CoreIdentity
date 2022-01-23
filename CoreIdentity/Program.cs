@@ -1,4 +1,5 @@
 using CoreIdentity.Authorization;
+using CoreIdentity.Middlewares;
 using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,8 +37,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication();
 
+app.UseAuthentication();
+app.UseUserLevel();
 app.UseAuthorization();
 
 
